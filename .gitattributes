@@ -1,2 +1,64 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Set the default behavior for all text files to use LF line endings in the repo.
+* text=auto eol=lf
+
+# Unity YAML files should use LF line endings
+*.cs     text diff=csharp
+*.shader text
+*.cginc  text
+*.hlsl   text
+
+# Force text files to use LF in the repo
+*.txt    text
+*.xml    text
+*.json   text
+*.yml    text
+
+# Unity serialized assets (text-based, YAML format)
+*.unity  text merge=unityyaml
+*.prefab text merge=unityyaml
+*.asset  text merge=unityyaml
+*.mat    text merge=unityyaml
+*.meta   text
+
+# Treat binary files as binary to avoid diff issues
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.ogg    binary
+*.mp3    binary
+*.wav    binary
+*.tga    binary
+*.psd    binary
+*.fbx    binary
+*.anim   binary
+*.controller binary
+*.ttf    binary
+*.otf    binary
+*.mp4    binary
+*.mov    binary
+*.webm   binary
+*.dll    binary
+*.exe    binary
+*.zip    binary
+*.unitypackage binary
+
+# Git Large File Storage (LFS) for large assets (optional, requires Git LFS)
+# If you are using Git LFS, uncomment the next lines:
+# *.png    filter=lfs diff=lfs merge=lfs -text
+# *.jpg    filter=lfs diff=lfs merge=lfs -text
+# *.fbx    filter=lfs diff=lfs merge=lfs -text
+# *.psd    filter=lfs diff=lfs merge=lfs -text
+
+# Unity scene merge tool
+*.unity merge=unityyaml
+*.prefab merge=unityyaml
+*.mat merge=unityyaml
+*.asset merge=unityyaml
+
+# Exclude temporary files and build artifacts
+[Ll]ibrary/*     binary
+[Tt]emp/*        binary
+[Oo]bj/*         binary
+[Bb]uild/*       binary
+[Bb]uilds/*      binary
+
