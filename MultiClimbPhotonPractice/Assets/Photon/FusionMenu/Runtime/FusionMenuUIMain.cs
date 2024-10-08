@@ -104,7 +104,9 @@ namespace Fusion.Menu {
       base.Show();
 
       _usernameView.SetActive(false);
-      _usernameLabel.text = ConnectionArgs.Username;
+      if (_usernameLabel) {
+        _usernameLabel.text = ConnectionArgs.Username;
+      }
 
       if (Config.AvailableScenes.Count > 1) {
         _sceneButton.interactable = true;
@@ -118,7 +120,7 @@ namespace Fusion.Menu {
         Debug.LogWarning("No valid scene to start found. Configure the menu config.");
       }
 
-      if (_sceneThumbnail != null) {
+      if (_sceneButton.gameObject.activeInHierarchy && _sceneThumbnail != null) {
         if (ConnectionArgs.Scene.Preview != null) {
           _sceneThumbnail.transform.parent.gameObject.SetActive(true);
           _sceneThumbnail.sprite = ConnectionArgs.Scene.Preview;
@@ -181,30 +183,10 @@ namespace Fusion.Menu {
 
       var result = await Connection.ConnectAsync(ConnectionArgs);
 
-      await HandleConnectionResult(result, this.Controller);
+      await Controller.HandleConnectionResult(result, this.Controller);
     }
 
-    /// <summary>
-    /// Default connection error handling is reused in a couple places.
-    /// </summary>
-    /// <param name="result">Connect result</param>
-    /// <param name="controller">UI Controller</param>
-    /// <returns>When handling is completed</returns>
-    public static async Task HandleConnectionResult(ConnectResult result, IFusionMenuUIController controller) {
-      if (result.CustomResultHandling == false) {
-        if (result.Success) {
-          controller.Show<FusionMenuUIGameplay>();
-        } else if (result.FailReason != ConnectFailReason.ApplicationQuit) {
-          var popup = controller.PopupAsync(result.DebugMessage, "Connection Failed");
-          if (result.WaitForCleanup != null) {
-            await Task.WhenAll(result.WaitForCleanup, popup);
-          } else {
-            await popup;
-          }
-          controller.Show<FusionMenuUIMain>();
-        }
-      }
-    }
+    
 
     /// <summary>
     /// Is called when the <see cref="_partyButton"/> is pressed using SendMessage() from the UI object.

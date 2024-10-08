@@ -61,7 +61,9 @@ namespace Fusion.Menu {
     /// </summary>
     /// <param name="text">Text</param>
     public void SetStatusText(string text) {
-      _text.text = text;
+      if (_text != null) {
+        _text.text = text;
+      }
     }
 
     /// <summary>

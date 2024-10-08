@@ -112,6 +112,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4758829840852999743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +139,8 @@ MonoBehaviour:
   _playersGameObject: {fileID: 7026546766086852384}
   _copySessionButton: {fileID: 512304064825115226}
   _disconnectButton: {fileID: 2584694545557162363}
+  _detectAndToggleMenuCamera: 1
+  _menuCamera: {fileID: 0}
   UpdateUsernameRateInSeconds: 2
 --- !u!1001 &328430294728770461
 PrefabInstance:

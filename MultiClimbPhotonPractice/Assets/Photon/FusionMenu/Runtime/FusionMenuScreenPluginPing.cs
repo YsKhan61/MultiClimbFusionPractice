@@ -40,7 +40,7 @@ namespace Fusion.Menu {
     /// </summary>
     [InlineHelp, SerializeField] protected ColorThresholds[] _colorsThresholds;
 
-    private IFusionMenuConnection _connection;
+    private FusionMenuConnectionBehaviour _connection;
 
     /// <summary>
     /// The parent screen is shown. Cache the connection object.

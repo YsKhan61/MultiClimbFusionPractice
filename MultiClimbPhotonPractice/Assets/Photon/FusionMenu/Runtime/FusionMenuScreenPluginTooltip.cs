@@ -21,7 +21,7 @@ namespace Fusion.Menu {
     /// </summary>
     [InlineHelp, SerializeField] protected Button _button;
 
-    private IFusionMenuUIController _controller;
+    private FusionMenuUIController _controller;
 
     /// <summary>
     /// Unity awake method to add the tooltip listener to the button.

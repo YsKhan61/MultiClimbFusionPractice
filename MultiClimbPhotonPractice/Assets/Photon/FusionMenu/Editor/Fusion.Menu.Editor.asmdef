@@ -18,6 +18,11 @@
             "name": "com.unity.textmeshpro",
             "expression": "1.0",
             "define": "FUSION_ENABLE_TEXTMESHPRO"
+        },
+        {
+            "name": "com.unity.ugui",
+            "expression": "2.0",
+            "define": "FUSION_ENABLE_TEXTMESHPRO"
         }
     ],
     "noEngineReferences": false

@@ -11,6 +11,7 @@ namespace Fusion.Editor {
   /// </summary>
   [CustomEditor(typeof(FusionMenuUIScreen), true)]
   public class FusionMenuUIScreenEditor : Editor {
+    /// <inheritdoc/>
     public override void OnInspectorGUI() {
       base.OnInspectorGUI();
 

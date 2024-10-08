@@ -8,6 +8,7 @@ namespace Fusion.Menu {
 #endif
   using UnityEngine;
   using UnityEngine.UI;
+  using static FusionUnityExtensions;
 
   /// <summary>
   /// The gameplay screen.
@@ -50,6 +51,15 @@ namespace Fusion.Menu {
     /// </summary>
     [InlineHelp, SerializeField] protected Button _disconnectButton;
     /// <summary>
+    /// Uses FindFirstObjectByType to find a camera to toggle on/off when going and leaving into the game screen.
+    /// Sets <see cref="_menuCamera"/>.
+    /// </summary>
+    [InlineHelp, SerializeField] protected bool _detectAndToggleMenuCamera;
+    /// <summary>
+    /// Toggles this camera on/off when entering or leaving the game screen.
+    /// </summary>
+    [InlineHelp, SerializeField] protected Camera _menuCamera;
+    /// <summary>
     /// In what frequencey are the usernames refreshed.
     /// </summary>
     [InlineHelp] public float UpdateUsernameRateInSeconds = 2;
@@ -77,6 +87,10 @@ namespace Fusion.Menu {
     public override void Init() {
       base.Init();
       InitUser();
+
+      if (_detectAndToggleMenuCamera) {
+        _menuCamera = FindFirstObjectByType<Camera>();
+      }
     }
 
     /// <summary>
@@ -86,6 +100,10 @@ namespace Fusion.Menu {
     public override void Show() {
       base.Show();
       ShowUser();
+
+      if (_menuCamera != null ) {
+        _menuCamera.enabled = false;
+      }
 
       if (Config.CodeGenerator != null && Config.CodeGenerator.IsValid(Connection.SessionName)) {
         // Only show the session UI if it is a party code
@@ -109,6 +127,10 @@ namespace Fusion.Menu {
     public override void Hide() {
       base.Hide();
       HideUser();
+
+      if (_menuCamera != null) {
+        _menuCamera.enabled = true;
+      }
 
       if (_updateUsernamesCoroutine != null) {
         StopCoroutine(_updateUsernamesCoroutine);

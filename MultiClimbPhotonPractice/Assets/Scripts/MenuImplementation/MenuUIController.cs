@@ -2,5 +2,5 @@ using Fusion.Menu;
 
 namespace MultiClimb.Menu
 {
-    public class MenuUIController : FusionMenuUIController<FusionMenuConnectArgs> { }
+    public class MenuUIController : FusionMenuUIController { }
 }

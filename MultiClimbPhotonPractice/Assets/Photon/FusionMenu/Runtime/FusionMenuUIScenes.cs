@@ -114,6 +114,10 @@ namespace Fusion.Menu {
     /// Updates the preview sprite and calls <see cref="FusionMenuImageFitter.OnResolutionChanged"/> via SendMessage().
     /// </summary>
     protected void RefreshPreviewSprite() {
+      if (Config.AvailableScenes.Count == 0) {
+        return;
+      }
+
       if (Config.AvailableScenes[_availableScenes.value].Preview == null) {
         _preview.sprite = _defaultSprite;
       } else {

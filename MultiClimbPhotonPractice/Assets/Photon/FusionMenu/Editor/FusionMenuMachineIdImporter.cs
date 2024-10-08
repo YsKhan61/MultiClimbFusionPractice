@@ -9,6 +9,7 @@ namespace Fusion.Editor {
   /// </summary>
   [ScriptedImporter(1, "id")]
   public class FusionMenuMachineIdImporter : ScriptedImporter {
+    /// <inheritdoc/>
     public override void OnImportAsset(AssetImportContext ctx) {
       var mainAsset = ScriptableObject.CreateInstance<FusionMenuMachineId>();
       if (mainAsset != null) {

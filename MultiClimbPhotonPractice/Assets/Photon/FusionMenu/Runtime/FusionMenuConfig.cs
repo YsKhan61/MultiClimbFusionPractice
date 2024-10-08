@@ -8,7 +8,7 @@ namespace Fusion.Menu {
   /// </summary>
   [ScriptHelp(BackColor = ScriptHeaderBackColor.Blue)]
   [CreateAssetMenu(menuName = "Fusion/Menu/Menu Config")]
-  public class FusionMenuConfig : FusionScriptableObject, IFusionMenuConfig {
+  public partial class FusionMenuConfig : FusionScriptableObject {
     /// <summary>
     /// The maximum player count allowed for all game modes.
     /// </summary>
@@ -21,13 +21,13 @@ namespace Fusion.Menu {
     /// The available Photon AppVersions to be selecteable by the user.
     /// An empty list will hide the related dropdown on the settings screen.
     /// </summary>
-    [InlineHelp, SerializeField] protected List<string> _availableAppVersions;
+    [InlineHelp, SerializeField] protected List<string> _availableAppVersions = new List<string> { "1.0" };
     /// <summary>
     /// Static list of regions available in the settings.
     /// An empty entry symbolizes best region option.
     /// An empty list will hide the related dropdown on the settings screen.
     /// </summary>
-    [InlineHelp, SerializeField] protected List<string> _availableRegions;
+    [InlineHelp, SerializeField] protected List<string> _availableRegions = new List<string> { "asia", "eu", "sa", "us" };
     /// <summary>
     /// Static list of scenes available in the scenes menu.
     /// An empty list will hide the related button in the main screen.
@@ -35,7 +35,7 @@ namespace Fusion.Menu {
     /// PhotonMeneSceneInfo.ScenePath = the actual Unity scene (must be included in BuildSettings)
     /// PhotonMeneSceneInfo.Preview = a sprite with a preview of the scene (screenshot) that is displayed in the main menu and scene selection screen (can be null)
     /// </summary>
-    [InlineHelp, SerializeField] protected List<PhotonMenuSceneInfo> _availableScenes;
+    [InlineHelp, SerializeField] protected List<PhotonMenuSceneInfo> _availableScenes = new List<PhotonMenuSceneInfo>();
     /// <summary>
     /// The <see cref="FusionMenuMachineId"/> ScriptableObject that stores local ids to use as an option in for AppVersion.
     /// Designed as a convenient development feature.

@@ -14,7 +14,7 @@ namespace Fusion.Menu {
   /// The popup screen handles notificaction.
   /// The screen has be <see cref="FusionMenuUIScreen.IsModal"/> true.
   /// </summary>
-  public partial class FusionMenuUIPopup : FusionMenuUIScreen, IFusionMenuPopup {
+  public partial class FusionMenuUIPopup : FusionMenuUIScreen {
     /// <summary>
     /// The text field for the message.
     /// </summary>

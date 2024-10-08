@@ -35,7 +35,7 @@ namespace Fusion.Menu {
     /// </summary>
     /// <param name="connectionArgs">Connection args.</param>
     /// <returns>Informational version string</returns>
-    public virtual string GetInformationalVersion(IFusionMenuConnectArgs connectionArgs) {
+    public virtual string GetInformationalVersion(FusionMenuConnectArgs connectionArgs) {
       if (connectionArgs == null) {
         return string.Empty;
       }
@@ -47,7 +47,7 @@ namespace Fusion.Menu {
     /// </summary>
     /// <param name="connection">Connection object.</param>
     /// <returns>Informational version string</returns>
-    public virtual string GetInformationalVersion(IFusionMenuConnection connection) {
+    public virtual string GetInformationalVersion(FusionMenuConnectionBehaviour connection) {
       if (connection == null) {
         return string.Empty;
       }
