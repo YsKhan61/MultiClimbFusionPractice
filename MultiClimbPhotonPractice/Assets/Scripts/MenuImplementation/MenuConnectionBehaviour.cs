@@ -21,9 +21,6 @@ namespace MultiClimb.Menu
         private NetworkRunner _networkRunnerPrefab;
 
         private NetworkRunner _networkRunner;
-
-        private NetworkRunner _runnerPrefab;
-        private NetworkRunner _runner;
         private bool _connectingSafeCheck;
         private CancellationTokenSource _cancellationTokenSource;
         private CancellationToken _cancellationToken;
@@ -153,7 +150,7 @@ namespace MultiClimb.Menu
             args.SessionNameGenerator = () => _config.CodeGenerator.EncodeRegion(_config.CodeGenerator.Create(), regionIndex);
             var startGameResult = default(StartGameResult);
             var connectResult = new ConnectResult();
-            startGameResult = await _runner.StartGame(args);
+            startGameResult = await _networkRunner.StartGame(args);
 
             connectResult.Success = startGameResult.Ok;
             connectResult.FailReason = ResolveConnectFailReason(startGameResult.ShutdownReason);
@@ -161,7 +158,7 @@ namespace MultiClimb.Menu
 
             if (connectResult.Success)
             {
-                _sessionName = _runner.SessionInfo.Name;
+                _sessionName = _networkRunner.SessionInfo.Name;
             }
 
             return connectResult;
@@ -169,7 +166,7 @@ namespace MultiClimb.Menu
         
         protected override async Task DisconnectAsyncInternal(int reason)
         {
-            var peerMode = _runner.Config?.PeerMode;
+            var peerMode = _networkRunner.Config?.PeerMode;
             _cancellationTokenSource.Cancel();
             await _networkRunner.Shutdown(shutdownReason: ResolveShutdownReason(reason));
 
@@ -183,7 +180,7 @@ namespace MultiClimb.Menu
 
         private NetworkRunner CreateRunner()
         {
-            return _runnerPrefab ? UnityEngine.Object.Instantiate(_runnerPrefab) : new GameObject("NetworkRunner", typeof(NetworkRunner)).GetComponent<NetworkRunner>();
+            return _networkRunnerPrefab ? UnityEngine.Object.Instantiate(_networkRunnerPrefab) : new GameObject("NetworkRunner", typeof(NetworkRunner)).GetComponent<NetworkRunner>();
         }
 
         private FusionAppSettings CopyAppSettings(FusionMenuConnectArgs connectArgs)
